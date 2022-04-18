@@ -16,7 +16,7 @@
 
 1. [환경 설정](https://github.com/justinyoo/swm-gha-workshop-beginners/blob/steps/01/steps-01.md)
 2. [기본 문법 배우기](https://github.com/justinyoo/swm-gha-workshop-beginners/blob/steps/02/steps-02.md)
-3. 헬로월드 워크플로우 만들기
+3. [헬로월드 워크플로우 만들기](https://github.com/justinyoo/swm-gha-workshop-beginners/blob/steps/03/steps-03.md)
 4. 웹엑스 메시지 전송 워크플로우 만들기
 5. 도커 기반 커스텀 깃헙 액션 만들기
 
