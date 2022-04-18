@@ -41,6 +41,6 @@ jobs:
         --header 'Content-Type: application/json' \
         --data-raw '{
           "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
-          "text": "Message sent by GitHub Actions 1 from ${{ github.repository }}"
+          "text": "Message sent by GitHub Actions from ${{ github.repository }}"
         }'
 ```
