@@ -14,9 +14,12 @@
 * `WEBEX_ROOM_ID`: 스페이스 ID
 
 
-## 웹엑스 메시지 보내기 ##
+## Postman 이용 웹엑스 메시지 보내기 ##
 
 * [Postman](https://getpostman.com/)
+
+
+## 깃헙 액션 이용 웹엑스 메시지 보내기 ##
 
 ```yaml
 name: 'SWM GitHub Actions Basic'
@@ -33,8 +36,11 @@ jobs:
     - name: Send message to Webex space
       shell: bash
       run: |
-        curl -x POST \
-          https://webexapis.com/v1/messages \
-          -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" \
-          -d '{ "roomId": "${{ secrets.WEBEX_ROOM_ID }}", "text": "깃헙 액션에서 보내는 메시지 from ${{ github.repository }}" }'
+        curl --location --request POST 'https://webexapis.com/v1/messages' \
+        --header 'Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+          "roomId": "${{ secrets.WEBEX_ROOM_ID }}",
+          "text": "Message sent by GitHub Actions 1 from ${{ github.repository }}"
+        }'
 ```
