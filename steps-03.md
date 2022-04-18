@@ -39,15 +39,15 @@ jobs:
     strategy:
       matrix:
         os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
-        shell: [ 'bash', 'pwsh' ]
+        message: [ 'Hello World', 'Lorem Ipsum' ]
 
     runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Say Hello World from ${{ matrix.os }}
-      shell: ${{ matrix.shell }}
+    - name: Greetings from ${{ matrix.os }}
+      shell: bash
       run: |
-        echo "Hello World in ${{ matrix.shell }} on ${{ matrix.os }}"
+        echo "${{ matrix.message }} from ${{ matrix.os }}"
 ```
 
 
@@ -95,16 +95,16 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Say Hello World from ${{ matrix.os }}
+    - name: Say Hello World from ${{ matrix.os }} 1
       shell: bash
       run: |
-        echo "Hello World on ${{ matrix.os }}"
+        echo "Hello World on ${{ matrix.os }} 1"
 
-    - name: Say Hello World from ${{ matrix.os }}
+    - name: Say Hello World from ${{ matrix.os }} 2
       if: matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
-        echo "Hello World on ${{ matrix.os }}"
+        echo "Hello World on ${{ matrix.os }} 2"
 ```
 
 
@@ -130,10 +130,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Say Hello World
+    - name: Say Hello World from ${{ github.ref }}
       shell: bash
       run: |
-        echo "Hello World"
+        echo "Hello World from ${{ github.ref }}"
 ```
 
 
@@ -154,10 +154,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Say Hello World
+    - name: Say Hello World from first job
       shell: bash
       run: |
-        echo "Hello World"
+        echo "Hello World from first job"
 
   second-job:
     name: 'Second Job'
@@ -166,8 +166,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Say Hello World
+    - name: Say Hello World from second job
       shell: bash
       run: |
-        echo "Hello World"
+        echo "Hello World from second job"
 ```
