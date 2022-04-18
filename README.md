@@ -14,7 +14,7 @@
 
 ## 세션 진행 순서 ##
 
-1. 환경 설정
+1. [환경 설정](https://github.com/justinyoo/swm-gha-workshop-beginners/blob/steps/01/steps-01.md)
 2. 기본 문법 배우기
 3. 헬로월드 워크플로우 만들기
 4. 웹엑스 메시지 전송 워크플로우 만들기
