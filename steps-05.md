@@ -21,20 +21,16 @@ Param(
     $BodyMarkdown = ""
 )
 
-$headers = @{ Authorization = "Bearer $WebexToken"; }
-$body = @{ roomId = $WebexRoomId; text = $BodyText; markdown = $BodyMarkdown }
-
-$response = Invoke-RestMethod `
-    -Method Post `
-    -Uri https://webexapis.com/v1/messages `
-    -Headers $headers `
-    -Body $body | ConvertTo-Json -Depth 100
+$response = curl --location --request POST 'https://webexapis.com/v1/messages' \
+--header 'Authorization: Bearer $WebexToken }}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "roomId": "$WebexRoomId",
+  "text": "$BodyText",
+  "markdown": "$BodyMarkdown"
+}'
 
 Write-Output "::set-output name=response::$response"
-
-Remove-Variable response
-Remove-Variable body
-Remove-Variable headers
 ```
 
 
@@ -104,4 +100,27 @@ ADD entrypoint.ps1 /entrypoint.ps1
 RUN chmod +x /entrypoint.ps1
 
 ENTRYPOINT ["pwsh", "-File", "/entrypoint.ps1"]
+```
+
+
+## 깃헙 액션 워크플로우 작성 ##
+
+```yaml
+name: 'SWM GitHub Actions Basic'
+
+on: push
+
+jobs:
+  first-job:
+    name: 'First Job'
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send message to Webex space
+      uses: ./
+      with:
+        webexToken: ${{ secrets.WEBEX_TOKEN }}
+        webexRoomId: ${{ secrets.WEBEX_ROOM_ID }}
+        bodyText: "Message sent by GitHub Actions from ${{ github.repository }}"
 ```
